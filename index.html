@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Popular Movies</title>
+</head>
+<body>
+    <h1>Popular Movies</h1>
+    <ul id="movieList"></ul>
+
+    <script>
+        fetch("http://localhost:8080/api/movies/popular")
+            .then(response => response.json())
+            .then(data => {
+                const list = document.getElementById("movieList");
+
+                data.forEach(movie => {
+                    const li = document.createElement("li");
+                    li.textContent = movie.title + " ⭐ " + movie.rating;
+                    list.appendChild(li);
+                });
+            });
+    </script>
+</body>
+</html>
